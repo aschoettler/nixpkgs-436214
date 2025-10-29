@@ -24,7 +24,7 @@ In an empty directory, run the following:
 
 ```sh
 nix flake init -t 'github:aschoettler/nixpkgs-436214#default'
-pushd foo/bar/baz
+pushd bar/baz
 nix flake check . && echo "Check Succeeded"
 nix build .#nixosConfigurations.default.config.system.build.toplevel && echo "Build Succeeded"
 nixos-rebuild --flake .#default build || echo "nixos-rebuild build OK"
