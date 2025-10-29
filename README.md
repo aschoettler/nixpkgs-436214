@@ -17,6 +17,10 @@ nixos-rebuild --flake .#default build && echo "nixos-rebuild build OK"
 nixos-rebuild --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
 nixos-option -F "$PWD#default" || echo "❌ nixos-option FAILED with error 'attribute nixosConfigurations missing'"
 popd
+# Here in the git repo root, the following WILL work:
+# nixos-rebuild --flake $PWD'?dir=foo/bar/baz#default' repl
+# nixos-option -F $PWD'?dir=foo/bar/baz#default' thing.value
+# nixos-option -F "${PWD}?dir=foo/bar/baz#default" thing.value # different quotes; also works
 ```
 
 **Failures for flake not in a git repo**
