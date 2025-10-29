@@ -4,7 +4,7 @@
   outputs = inputs: {
     templates = {
       default = {
-        path = ./.;
+        path = ./foo;
         description = "A Template";
       };
     };
