@@ -15,7 +15,7 @@ nix flake check . && echo "Check Succeeded"
 nix build .#nixosConfigurations.default.config.system.build.toplevel && echo "Build Succeeded"
 nixos-rebuild --flake .#default build && echo "nixos-rebuild build OK"
 nixos-rebuild --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
-nixos-option -F "$PWD#default" || echo "❌ nixos-option FAILED"
+nixos-option -F "$PWD#default" || echo "❌ nixos-option FAILED with error 'attribute nixosConfigurations missing'"
 popd
 ```
 
@@ -30,6 +30,6 @@ nix flake check --impure . || echo "❌ Check FAILED"
 nix build --impure .#nixosConfigurations.default.config.system.build.toplevel || echo "❌ Build FAILED"
 nixos-rebuild --impure --flake .#default build || echo "❌ nixos-rebuild build FAILED"
 nixos-rebuild --impure --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
-nixos-option -F "$PWD#default" || echo "❌ nixos-option FAILED"
+nixos-option -F "$PWD#default" || echo "❌ nixos-option FAILED with error 'path /nix/resources.nix does not exist'"
 popd
 ```
