@@ -18,16 +18,16 @@ nixos-rebuild --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
 popd
 ```
 
-**Failure for flake not in a git repo**
+**Failures for flake not in a git repo**
 
 In an empty directory, run the following:
 
 ```sh
 nix flake init -t 'github:aschoettler/nixpkgs-436214#default'
 pushd bar/baz
-nix flake check . && echo "Check Succeeded"
-nix build .#nixosConfigurations.default.config.system.build.toplevel && echo "Build Succeeded"
-nixos-rebuild --flake .#default build || echo "nixos-rebuild build OK"
-nixos-rebuild --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
+nix flake check --impure . || echo "❌ Check FAILED"
+nix build --impure .#nixosConfigurations.default.config.system.build.toplevel || echo "❌ Build FAILED"
+nixos-rebuild --impure --flake .#default build || echo "❌ nixos-rebuild build FAILED"
+nixos-rebuild --impure --flake .#default repl || echo "❌ nixos-rebuild repl FAILED"
 popd
 ```
